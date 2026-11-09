@@ -1,0 +1,17 @@
+Slak dan Slak Studio dikembangkan secara terbuka dengan lisensi MIT. Siapa pun boleh memakai, mengubah, dan membagikannya, termasuk untuk tujuan komersial.
+
+## Melaporkan galat
+
+Buka issue di [GitHub Slak](https://github.com/slakstudio). Tulis versi Slak (`sl.version`), browser yang dipakai, langkah untuk mengulang galatnya, dan kode terkecil yang masih menunjukkan galat itu. Tautan berbagi dari Playground sangat membantu karena kodenya bisa langsung dibuka.
+
+## Memperbaiki isi situs dan buku
+
+Isi setiap bab ada di folder `konten/` sebagai berkas Markdown, sumber yang sama dengan Buku Panduan Slak. Untuk memperbaiki salah ketik atau penjelasan, ubah berkas `.md` bab itu, lalu kirim usulan perubahan (pull request). Blok ` ```slak ` dijalankan di halaman; tulis ` ```slak tanpa-jalan ` untuk contoh yang hanya ditampilkan.
+
+## Aturan Write and Run
+
+Setiap usulan fitur harus tetap setia pada enam aturan Write and Run (Bab 1): tanpa build, bisa dibuka dengan klik dua kali, cukup diunggah, tanpa instalasi, satu bahasa untuk pengguna, dan bawaan yang masuk akal. API Slak 1.9 sudah dibekukan, jadi fitur baru dikumpulkan untuk Slak 2.0 (lihat [Kebijakan versi](#/kebijakan-versi)).
+
+## Lisensi kontribusi
+
+Kontribusi yang diterima ikut berlisensi MIT. Pustaka pihak ketiga hanya boleh ditambahkan bila lisensinya terbuka, bebas diubah, dan boleh dipakai komersial tanpa membayar.
