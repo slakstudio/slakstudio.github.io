@@ -17,7 +17,7 @@
   };
 
   Slak.run(async (sl) => {
-    sl.set_page_config({ page_title: 'Slak', page_icon: 'ikon.svg', layout: 'centered' });
+    sl.set_page_config({ page_title: 'Slak', page_icon: './ikon.svg', layout: 'centered' });
     await Slak.docs.site(sl, {
       tampilan: 'jernih',
       judul: 'Slak',
