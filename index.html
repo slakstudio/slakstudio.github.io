@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slak: tulis, simpan, klik</title>
+<meta name="description" content="Slak: framework JavaScript ala Streamlit untuk aplikasi data yang berjalan sepenuhnya di browser. Tanpa server, tanpa build, gratis dengan lisensi MIT.">
+<meta property="og:title" content="Slak: tulis, simpan, klik">
+<meta property="og:description" content="Framework JavaScript ala Streamlit untuk aplikasi data di browser. Tanpa server, tanpa build, lisensi MIT.">
+<meta property="og:image" content="https://slak.studio/ikon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://slak.studio/">
+<link rel="icon" href="ikon.svg" type="image/svg+xml">
+<link rel="icon" href="ikon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0f7a70">
+<!-- Huruf Inter dan JetBrains Mono (SIL Open Font License). Tanpa internet, situs memakai huruf bawaan sistem. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>html,body{margin:0;background:#fff}@media (prefers-color-scheme:dark){html,body{background:#0f1115}}</style>
+<!--
+  Situs resmi Slak, dibuat dengan Slak 1.9.1 tanpa build.
+  slak.js dan tambahannya sama dengan yang diunduh pengguna; slak-docs.js menyusun menu, pencarian, dan daftar isi.
+  Isi bab: konten/*.md (Markdown). konten/*.md.js adalah salinan terbungkus (Bungkus data) agar situs
+  tetap bisa dibaca saat index.html dibuka dengan klik dua kali.
+-->
+<script src="slak.js"></script>
+<script src="slak-data.js"></script>
+<script src="slak-komponen.js"></script>
+<script src="slak-docs.js"></script>
+<script src="contoh/galeri.js"></script>
+<script src="halaman/beranda.js"></script>
+<script src="halaman/galeri.js"></script>
+<script src="halaman/proyek.js"></script>
+<script src="halaman/katalog.js"></script>
+</head>
+<body>
+<noscript><p>Situs Slak butuh JavaScript. Isi bab juga tersedia sebagai berkas Markdown di folder <a href="konten/">konten/</a>.</p></noscript>
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+</script>
+</body>
+</html>

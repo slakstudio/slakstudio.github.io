@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slak Playground</title>
+<link rel="canonical" href="https://slak.studio/playground/">
+<meta name="description" content="Tulis lalu jalankan aplikasi data dengan Slak, langsung di browser, tanpa instalasi.">
+<link rel="icon" href="../ikon.svg" type="image/svg+xml">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#0f766e">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="icon" href="../ikon-32.png" sizes="32x32" type="image/png">
+<script src="../slak.js"></script>
+<!-- pustaka opsional: hapus baris yang tidak dipakai agar halaman lebih ringan -->
+<script src="../slak-data.js"></script>
+<script src="../slak-sql.js"></script>
+<script src="../slak-komponen.js"></script>
+<script src="../slak-peta.js"></script>
+<style>
+  :root { --bg:#f3f0e9; --panel:#fbfaf7; --fg:#1c1e21; --muted:#6a6e75; --line:#e2ded4; --accent:#0f766e; --ed:#1b1e23; --ed-fg:#e8e6e1; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0e1013; --panel:#121417; --fg:#e8e6e1; --muted:#9aa0a8; --line:#2b2f35; --accent:#2dd4bf; } }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .shell { display: grid; grid-template-rows: auto auto 1fr; height: 100vh; height: 100dvh; }
+  header { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  header b { font-size: 15px; letter-spacing: -.01em; }
+  header b span { color: var(--accent); }
+  header .sp { flex: 1; }
+  select, button, label.auto { font: inherit; }
+  select { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); }
+  button.run { padding: 6px 14px; border-radius: 8px; border: 0; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; }
+  @media (prefers-color-scheme: dark) { button.run { color: #052522; } }
+  label.auto { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
+  .kbd { color: var(--muted); font-size: 12px; }
+  button.share { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
+  .note { display: none; align-items: center; gap: 10px; padding: 8px 14px; background: color-mix(in srgb, var(--accent) 12%, var(--bg)); border-bottom: 1px solid var(--line); font-size: 13px; }
+  .note.show { display: flex; }
+  .note input { flex: 1; min-width: 0; font: 12px ui-monospace, monospace; padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--fg); }
+  .note button { font: inherit; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
+  .split { display: grid; grid-template-columns: minmax(320px, 42%) 1fr; min-height: 0; }
+  .editor { position: relative; min-height: 0; background: var(--ed); }
+  textarea { width: 100%; height: 100%; border: 0; resize: none; outline: none; padding: 16px 18px; background: var(--ed); color: var(--ed-fg);
+    font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; tab-size: 2; white-space: pre; }
+  .preview { min-height: 0; border-left: 1px solid var(--line); background: var(--panel); }
+  @media (max-width: 820px) { .split { grid-template-columns: 1fr; grid-template-rows: 45% 55%; } .preview { border-left: 0; border-top: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <b>✦ Slak <span>Playground</span></b>
+    <select id="tpl" aria-label="Pilih contoh"></select>
+    <span class="sp"></span>
+    <label class="auto"><input type="checkbox" id="auto" checked> Jalankan otomatis</label>
+    <span class="kbd">Ctrl + Enter</span>
+    <button class="share" id="share" title="Salin tautan yang berisi kode ini">🔗 Bagikan</button>
+    <button class="run" id="run">▶ Jalankan</button>
+  </header>
+  <div class="note" id="note"><span id="noteText"></span><input id="noteLink" readonly hidden><button id="noteCopy" hidden>Salin</button><button id="noteClose" aria-label="Tutup">✕</button></div>
+  <div class="split">
+    <div class="editor"><textarea id="code" spellcheck="false" aria-label="Kode Slak"></textarea></div>
+    <div class="preview" id="preview"></div>
+  </div>
+</div>
+
+<script>
+const TEMPLATES = {
+  "Halo dunia": `sl.title("Halo, Slak! 👋")
+const nama = sl.text_input("Siapa namamu?", "Teman")
+const n = sl.slider("Pilih angka", 1, 20, 5)
+
+sl.write(\`Halo **\${nama}**! \${n} kuadrat adalah **\${n * n}**.\`)
+sl.bar_chart(Array.from({ length: n }, (_, i) => ({ x: i + 1, kuadrat: (i + 1) ** 2 })), { x: "x" })`,
+
+  "Penghitung (session_state)": `sl.title("Penghitung")
+const ss = sl.session_state
+if (!("n" in ss)) ss.n = 0
+
+const [a, b, c] = sl.columns(3)
+if (a.button("➖ Kurang")) ss.n--
+if (b.button("➕ Tambah", { type: "primary" })) ss.n++
+c.button("Reset", { on_click: () => { ss.n = 0 } })
+
+sl.metric("Nilai", ss.n)`,
+
+  "Analisis CSV": `sl.title("Analisis CSV")
+const f = sl.file_uploader("Unggah CSV", { type: "csv" })
+let rows
+if (f) rows = f.csv()
+else {
+  sl.info("Belum ada berkas — memakai data contoh.")
+  rows = sl.parse_csv(\`bulan,penjualan,biaya
+Jan,120,80
+Feb,135,90
+Mar,160,95
+Apr,150,100
+Mei,190,110\`)
+}
+sl.dataframe(rows)
+const angka = Object.keys(rows[0]).filter(k => typeof rows[0][k] === "number")
+const kol = sl.multiselect("Kolom untuk grafik", angka, { default: angka })
+const x = Object.keys(rows[0]).find(k => !angka.includes(k))
+sl.line_chart(rows, { x, y: kol })`,
+
+  "Animasi async": `sl.title("Proses bertahap")
+if (sl.button("Mulai", { type: "primary" })) {
+  const bar = sl.progress(0)
+  const info = sl.empty()
+  const data = []
+  const grafik = sl.empty()
+  for (let i = 1; i <= 30; i++) {
+    await sl.sleep(60)
+    data.push({ t: i, nilai: Math.sin(i / 4) * 10 + i })
+    bar.progress(i / 30 * 100)
+    info.caption(\`Langkah \${i}/30\`)
+    grafik.line_chart(data, { x: "t" })
+  }
+  sl.success("Selesai!")
+}`,
+
+  "Chat": `sl.title("Chat gema")
+const ss = sl.session_state
+ss.log ??= []
+for (const m of ss.log) sl.chat_message(m.r).write(m.t)
+
+const q = sl.chat_input("Katakan sesuatu…")
+if (q) {
+  ss.log.push({ r: "user", t: q })
+  sl.chat_message("user").write(q)
+  const jawab = "Kamu bilang: **" + q + "**"
+  ss.log.push({ r: "assistant", t: jawab })
+  sl.chat_message("assistant").write(jawab)
+}`
+};
+
+const $ = id => document.getElementById(id);
+const code = $('code'), tpl = $('tpl'), preview = $('preview'), auto = $('auto');
+for (const k of Object.keys(TEMPLATES)) tpl.append(new Option(k, k));
+
+let saved = null;
+try { saved = localStorage.getItem('slak-playground'); } catch (e) {}
+code.value = saved || TEMPLATES["Halo dunia"];
+
+// Pemberitahuan di bawah judul (tautan berbagi)
+const note = (text, link) => {
+  $('noteText').textContent = text;
+  $('noteLink').hidden = $('noteCopy').hidden = !link;
+  if (link) $('noteLink').value = link;
+  $('note').classList.add('show');
+};
+$('noteClose').addEventListener('click', () => $('note').classList.remove('show'));
+$('noteCopy').addEventListener('click', () => { $('noteLink').select(); navigator.clipboard.writeText($('noteLink').value).then(() => { $('noteCopy').textContent = 'Tersalin ✓'; }, () => document.execCommand('copy')); });
+
+let fromLink = false;   // kode dari tautan tidak menimpa kode simpananmu sampai kamu mengubahnya
+let app = null;
+function run() {
+  if (app) app.destroy();
+  app = Slak.run(code.value, { target: preview, embedded: true, hotkeys: false });
+  if (!fromLink) try { localStorage.setItem('slak-playground', code.value); } catch (e) {}
+}
+
+$('share').addEventListener('click', async () => {
+  const link = await Slak.share.link(code.value);
+  history.replaceState(null, '', link.slice(link.indexOf('#')));
+  let copied = false;
+  try { await navigator.clipboard.writeText(link); copied = true; } catch (e) { /* salin manual */ }
+  const warn = link.length > 8000 ? ' Tautan ini panjang (' + link.length.toLocaleString('id-ID') + ' karakter); sebagian aplikasi chat memotong tautan panjang.' : '';
+  const file = /read_csv\(|sqlite\(|read_excel\(|read_json\(|loadFile|\.csv["'`]/.test(code.value) ? ' Berkas data (CSV, database) tidak ikut; pakai dataset bawaan atau alamat https.' : '';
+  note((copied ? 'Tautan berbagi tersalin.' : 'Salin tautan ini:') + ' Siapa pun yang membukanya melihat kode dan hasilnya.' + warn + file, link);
+});
+
+tpl.addEventListener('change', () => { fromLink = false; code.value = TEMPLATES[tpl.value]; run(); });
+$('run').addEventListener('click', run);
+
+let t;
+code.addEventListener('input', () => {
+  fromLink = false;
+  if (!auto.checked) return;
+  clearTimeout(t);
+  t = setTimeout(run, 700);
+});
+code.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); run(); return; }
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const s = code.selectionStart, en = code.selectionEnd;
+    code.setRangeText('  ', s, en, 'end');
+  }
+});
+// Dibuka dari tautan berbagi: playground/#kode=... (playground.html lama mengalihkan ke sini)
+(async () => {
+  try {
+    const shared = await Slak.share.read(location.hash);
+    if (shared != null) { code.value = shared; fromLink = true; note('Kode ini dibuka dari tautan berbagi. Kode simpananmu tidak berubah sampai kamu mengedit kode ini.'); }
+  } catch (e) { note('Tautan berbagi tidak bisa dibuka: ' + e.message); }
+  run();
+})();
+window.addEventListener('hashchange', async () => {
+  const shared = await Slak.share.read(location.hash).catch(() => null);
+  if (shared != null && shared !== code.value) { code.value = shared; fromLink = true; run(); }
+});
+</script>
+<script>
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) addEventListener('load', function () { navigator.serviceWorker.register('../sw.js', { scope: '../' }).catch(function () {}); });
+</script>
+</body>
+</html>

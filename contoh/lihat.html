@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Contoh Slak</title>
+<link rel="icon" href="../ikon.svg" type="image/svg+xml">
+<!-- Menjalankan satu contoh dari galeri. Kodenya ada di alamat (#kode=...), format yang sama dengan tautan berbagi Playground. -->
+<script src="../slak.js"></script>
+<script src="../slak-data.js"></script>
+<script src="../slak-sql.js"></script>
+<script src="../slak-komponen.js"></script>
+<script src="../slak-peta.js"></script>
+<script src="../slak-duckdb.js"></script>
+</head>
+<body>
+<script>
+(async function () {
+  let kode = null;
+  try { kode = await Slak.share.read(location.hash); } catch (e) { kode = null; }
+  Slak.run(kode || 'sl.info("Pilih contoh di Galeri, lalu contohnya tampil di sini.")', { app_id: 'situs-contoh' });
+})();
+</script>
+</body>
+</html>
