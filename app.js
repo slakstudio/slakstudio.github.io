@@ -34,7 +34,7 @@
         { label: 'Unduh', href: '#/unduh' },
         { label: 'GitHub', href: window.SITUS.github }
       ],
-      kaki: 'Slak dan Slak Studio · Lisensi MIT · Situs ini dibuat dengan Slak · <a href="https://slak.studio">slak.studio</a> · salinan resmi <a href="https://slakstudio.github.io">slakstudio.github.io</a>',
+      kaki: 'Slak dan Slak Studio · Lisensi MIT · Situs ini dibuat dengan Slak · <a href="#/pengakuan">Pengakuan</a> · <a href="#/pernyataan-ai">Pernyataan AI</a> · <a href="https://slak.studio">slak.studio</a> · salinan resmi <a href="https://slakstudio.github.io">slakstudio.github.io</a>',
       bab: {
         '': [
           fn('Slak', 'beranda', 'beranda', { polos: true })
@@ -107,7 +107,9 @@
           fn('Portofolio', 'portofolio', 'portofolio', { deskripsi: 'Portofolio analis data yang dibuat dengan Slak.' }),
           fn('Unduh', 'unduh', 'unduh', { deskripsi: 'Unduh slak.js, Slak Studio, dan buku panduan.' }),
           fn('Lisensi', 'lisensi', 'lisensi', { deskripsi: 'Lisensi MIT dan daftar pustaka pihak ketiga.' }),
-          md('Berkontribusi', 'berkontribusi.md', 'berkontribusi', 'Cara melapor galat dan ikut mengembangkan Slak.')
+          md('Berkontribusi', 'berkontribusi.md', 'berkontribusi', 'Cara melapor galat dan ikut mengembangkan Slak.'),
+          md('Pengakuan', 'pengakuan.md', 'pengakuan', 'Asal nama Slak, filosofi Write and Run, semangat cari slak, dan cara Slak dibuat.'),
+          md('Pernyataan penggunaan AI', 'ai-disclosure.md', 'pernyataan-ai', 'Bagaimana Claude dipakai dalam pembuatan Slak, dan bagaimana hasilnya diperiksa.')
         ]
       }
     });

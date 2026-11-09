@@ -69,7 +69,7 @@
     sl.header('Mulai dalam tiga langkah', { anchor: 'mulai' });
     sl.markdown('1. Buat folder, lalu simpan `slak.js` di dalamnya.\n2. Buat berkas `index.html` berisi kode di bawah.\n3. Klik dua kali `index.html`. Aplikasimu terbuka di browser.');
     sl.code('<!doctype html>\n<script src="slak.js"></' + 'script>\n<script type="text/slak">\nsl.title("Halo, Slak")\nsl.write("Aplikasi pertamaku berjalan tanpa server.")\n</' + 'script>', { language: 'html' });
-    sl.markdown(`Versi lama dan catatan rilis ada di [GitHub Releases](https://github.com/${RILIS_REPO}/releases) dan [Riwayat versi](#/riwayat).`);
+    sl.markdown(`Slak 1.0 sampai 1.9 dikembangkan secara tertutup. Rilis publik pertama Slak adalah **1.9.1**, jadi belum ada versi lama untuk diunduh. Catatan rilis ada di [GitHub Releases](https://github.com/${RILIS_REPO}/releases), dan sejarah setiap versi ada di [Riwayat versi](#/riwayat).`);
   };
 
   /* ---------- Lisensi ---------- */

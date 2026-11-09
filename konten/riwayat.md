@@ -2,6 +2,8 @@
 
 Ringkasan setiap versi. Penjelasan lengkap ada di README.md (bagian "Baru di Slak …") dan di buku panduan.
 
+> **Catatan:** Slak 1.0 sampai 1.9 dikembangkan secara tertutup. Rilis publik pertama Slak adalah **1.9.1** (November 2026). Nomor versinya dipertahankan karena mencatat sejarah pengembangan dan karena sejak 1.9 API Slak sudah dibekukan (API-STABIL.md, KEBIJAKAN-VERSI.md). Versi-versi sebelumnya tidak diterbitkan sebagai unduhan resmi.
+
 | Versi | Tema | Isi utama |
 |---|---|---|
 | 1.9.1 | Tambalan: ikon dan situs | Ikon Sl di Slak Studio, exe, favicon, PWA, dan sampul buku; situs resmi slak.studio dengan salinan resmi slakstudio.github.io; playground di `playground/` dan `Slak.share.official`; `slak-docs.js` 0.1 untuk situs dokumentasi; `.htaccess`, `robots.txt`, `sitemap.xml`; TERBIT-SITUS.md |
