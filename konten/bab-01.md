@@ -64,7 +64,7 @@ Aturan ini adalah janji pengembangan Slak. Jika sebuah fitur tidak bisa dibuat t
 
 Setiap kali pengguna menyentuh widget, Slak menyimpan nilai barunya lalu menjalankan ulang seluruh skrip dari baris pertama. Slak lalu hanya memperbarui bagian halaman yang berubah, sehingga fokus kursor dan posisi gulir tetap terjaga.
 
-![Siklus jalan ulang Slak · 4 langkah](./media/image1.png)
+![Siklus jalan ulang Slak · 4 langkah](konten/gambar/siklus-jalan-ulang.png)
 
 Siklus jalan ulang Slak · 4 langkah
 

@@ -39,66 +39,66 @@
         '': [
           fn('Slak', 'beranda', 'beranda', { polos: true })
         ],
-        'Pengantar': [
-          bab(1, 'Apa itu Slak?', 'mengenal-slak', 'Apa itu Slak, filosofi Write and Run, dan untuk siapa Slak dibuat.'),
-          bab(2, 'Instalasi', 'instalasi', 'Memasang Slak di halaman web dan memasang Slak Studio.'),
-          bab(3, 'Aplikasi pertama', 'aplikasi-pertama', 'Membuat kalkulator diskon dalam lima langkah.'),
-          bab(21, 'Menerbitkan portofolio', 'portofolio-online', 'Mengonlinekan portofolio Data Analyst.'),
-          bab(40, 'Terbit sekali klik dan PWA', 'terbit', 'Terbit ke GitHub Pages, Netlify, dan FTP, serta aplikasi yang bisa dipasang.'),
-          bab(32, 'Seberapa jauh Slak bisa dipercaya', 'kepercayaan', 'Uji akurasi, batas ukuran data, dan catatan keamanan.'),
-          bab(44, 'Versi stabil dan pindah versi', 'versi-stabil', 'Janji API stabil 1.9 dan cara pindah dari versi lama.')
-        ],
-        'Konsep': [
-          bab(4, 'Konsep inti', 'konsep-inti', 'Jalan ulang, widget, session_state, key, callback, async, cache, stop dan rerun.'),
-          bab(12, 'Multi-halaman', 'multi-halaman', 'Aplikasi dengan banyak halaman memakai sl.navigation.'),
-          bab(13, 'Menyimpan data', 'menyimpan-data', 'local_state, sl.db, dan berkas.'),
-          bab(24, 'Wadah interaktif', 'wadah-interaktif', 'Dialog, popover, fragment, dan status.'),
-          bab(26, 'Melindungi jawaban', 'sl-crypto', 'Melindungi jawaban dan password dengan sl.crypto.'),
-          bab(29, 'Emoji, login, dan dataset online', 'emoji-login', 'Emoji, sl.login, dan dataset online.'),
-          bab(39, 'Berbagi lewat slak-bridge', 'berbagi-bridge', 'Berbagi, login, dan kuis lewat slak-bridge.'),
-          bab(35, 'Menguji aplikasi', 'menguji-aplikasi', 'sl.testing dan paritas Streamlit.'),
-          bab(36, 'Komponen kustom', 'komponen-kustom', 'Komponen kustom dua arah.'),
-          bab(42, 'Kinerja dengan sl.worker', 'kinerja', 'sl.worker dan CSV besar.'),
-          bab(43, 'Aksesibilitas', 'aksesibilitas', 'Aplikasi Slak yang bisa dipakai semua orang.'),
-          bab(45, 'Situs dokumentasi', 'slak-docs', 'Membuat situs dokumentasi dengan slak-docs.js.')
-        ],
-        'Widget': [
-          bab(25, 'Widget, tabel, dan grafik', 'widget-kaya', 'Widget, tabel, dan grafik yang lebih kaya.'),
-          fn('Katalog API', 'katalog', 'katalog', { deskripsi: 'Semua fungsi Slak dengan contoh yang berjalan langsung.' })
-        ],
-        'Slak Data': [
-          bab(14, 'DataFrame', 'dataframe', 'Slak Data: DataFrame bergaya pandas.'),
-          bab(15, 'Mengolah data', 'mengolah-data', 'groupby, pivot, merge, dan deret waktu.'),
-          bab(16, 'Grafik', 'grafik', 'Grafik untuk analis.'),
-          bab(17, 'SQL di browser', 'sql', 'SQLite di browser.'),
-          bab(27, 'SQL portabel PostgreSQL', 'sql-postgresql', 'SQL yang juga jalan di PostgreSQL.'),
-          bab(18, 'Statistik', 'statistik', 'Uji hipotesis, uji A/B, dan regresi.'),
-          bab(19, 'ML dan peramalan', 'ml', 'Machine learning, peramalan, dan analisis bisnis.'),
-          bab(22, 'Peta', 'peta', 'Peta titik, choropleth, dan batas wilayah.'),
-          bab(23, 'Tabel database', 'tabel-database', 'Tabel database yang bisa diedit.'),
-          bab(28, 'Data besar dan berkas lokal', 'data-besar', 'Data besar dan berkas lokal.'),
-          bab(31, 'DuckDB', 'duckdb', 'Data besar dengan DuckDB.'),
-          bab(33, 'Database di server', 'database-server', 'slak-bridge dan Turso.'),
-          bab(41, 'Google BigQuery', 'bigquery', 'Google BigQuery.'),
-          bab(38, 'Laporan SQL dan mode sel', 'laporan-sql', 'Laporan SQL dan mode sel.'),
-          bab(37, 'Templat dasbor', 'templat-dasbor', 'Coba model dan templat dasbor.')
-        ],
-        'Ke Python': [
-          bab(20, 'Naik level ke Python', 'ke-python', 'Naik level ke Python.'),
-          bab(34, 'Pintu masuk ke Python', 'pintu-python', 'Slak sebagai pintu masuk ke Python.')
+        'Mulai': [
+          bab(1, "1. Mengenal Slak", 'mengenal-slak', "Apa itu Slak, filosofi Write and Run, dan untuk siapa Slak dibuat."),
+          bab(2, "2. Instalasi", 'instalasi', "Memasang Slak di halaman web dan memasang Slak Studio."),
+          bab(3, "3. Aplikasi pertama", 'aplikasi-pertama', "Membuat kalkulator diskon dalam lima langkah."),
+          bab(4, "4. Konsep inti", 'konsep-inti', "Jalan ulang, widget, session_state, key, callback, async, cache, stop dan rerun.")
         ],
         'Slak Studio': [
-          bab(5, 'Mengenal Slak Studio', 'slak-studio', 'Antarmuka Slak Studio.'),
-          bab(6, 'Berkas', 'berkas-studio', 'Berkas di Slak Studio.'),
-          bab(7, 'Editor', 'editor', 'Menulis kode di editor.'),
-          bab(8, 'Belajar dengan playground', 'belajar', 'Belajar dengan playground.'),
-          bab(30, 'Jendela Database', 'jendela-database', 'Jendela Database di Slak Studio.')
+          bab(5, "5. Mengenal Slak Studio", 'slak-studio', "Antarmuka Slak Studio."),
+          bab(6, "6. Berkas di Slak Studio", 'berkas-studio', "Berkas di Slak Studio."),
+          bab(7, "7. Menulis kode di editor", 'editor', "Menulis kode di editor."),
+          bab(8, "8. Belajar dengan playground", 'belajar', "Belajar dengan playground.")
         ],
         'Referensi': [
-          bab(9, 'Referensi API', 'referensi-api', 'Referensi API Slak.'),
-          bab(10, 'Resep dan proyek', 'resep', 'Resep dan proyek.'),
-          bab(11, 'Pemecahan masalah', 'pemecahan-masalah', 'Pemecahan masalah.'),
+          bab(9, "9. Referensi API", 'referensi-api', "Referensi API Slak."),
+          bab(10, "10. Resep dan proyek", 'resep', "Resep dan proyek."),
+          bab(11, "11. Pemecahan masalah", 'pemecahan-masalah', "Pemecahan masalah.")
+        ],
+        'Aplikasi': [
+          bab(12, "12. Aplikasi multi-halaman", 'multi-halaman', "Aplikasi dengan banyak halaman memakai sl.navigation."),
+          bab(13, "13. Menyimpan data", 'menyimpan-data', "local_state, sl.db, dan berkas.")
+        ],
+        'Slak Data': [
+          bab(14, "14. Slak Data: DataFrame", 'dataframe', "Slak Data: DataFrame bergaya pandas."),
+          bab(15, "15. Mengolah data: groupby, pivot, merge, deret waktu", 'mengolah-data', "groupby, pivot, merge, dan deret waktu."),
+          bab(16, "16. Grafik untuk analis", 'grafik', "Grafik untuk analis."),
+          bab(17, "17. SQL di browser", 'sql', "SQLite di browser."),
+          bab(18, "18. Statistik: uji hipotesis, uji A/B, regresi", 'statistik', "Uji hipotesis, uji A/B, dan regresi."),
+          bab(19, "19. Machine learning, peramalan, dan analisis bisnis", 'ml', "Machine learning, peramalan, dan analisis bisnis."),
+          bab(20, "20. Naik level ke Python", 'ke-python', "Naik level ke Python.")
+        ],
+        'Topik lanjutan': [
+          bab(21, "21. Mengonlinekan portofolio Data Analyst", 'portofolio-online', "Mengonlinekan portofolio Data Analyst."),
+          bab(22, "22. Peta", 'peta', "Peta titik, choropleth, dan batas wilayah."),
+          bab(23, "23. Tabel database yang bisa diedit", 'tabel-database', "Tabel database yang bisa diedit."),
+          bab(24, "24. Wadah interaktif: dialog, popover, fragment, status", 'wadah-interaktif', "Dialog, popover, fragment, dan status."),
+          bab(25, "25. Widget, tabel, dan grafik yang lebih kaya", 'widget-kaya', "Widget, tabel, dan grafik yang lebih kaya."),
+          bab(26, "26. Melindungi jawaban dan password dengan sl.crypto", 'sl-crypto', "Melindungi jawaban dan password dengan sl.crypto."),
+          bab(27, "27. SQL yang juga jalan di PostgreSQL", 'sql-postgresql', "SQL yang juga jalan di PostgreSQL."),
+          bab(28, "28. Data besar dan berkas lokal", 'data-besar', "Data besar dan berkas lokal."),
+          bab(29, "29. Emoji, login, dan dataset online", 'emoji-login', "Emoji, sl.login, dan dataset online."),
+          bab(30, "30. Jendela Database di Slak Studio", 'jendela-database', "Jendela Database di Slak Studio."),
+          bab(31, "31. Data besar dengan DuckDB", 'duckdb', "Data besar dengan DuckDB."),
+          bab(32, "32. Seberapa jauh Slak bisa dipercaya", 'kepercayaan', "Uji akurasi, batas ukuran data, dan catatan keamanan."),
+          bab(33, "33. Database di server: slak-bridge dan Turso", 'database-server', "slak-bridge dan Turso."),
+          bab(34, "34. Slak sebagai pintu masuk ke Python", 'pintu-python', "Slak sebagai pintu masuk ke Python."),
+          bab(35, "35. Menguji aplikasi dan paritas Streamlit", 'menguji-aplikasi', "sl.testing dan paritas Streamlit."),
+          bab(36, "36. Komponen kustom dua arah", 'komponen-kustom', "Komponen kustom dua arah."),
+          bab(37, "37. Coba model dan templat dasbor", 'templat-dasbor', "Coba model dan templat dasbor."),
+          bab(38, "38. Laporan SQL dan mode sel", 'laporan-sql', "Laporan SQL dan mode sel."),
+          bab(39, "39. Berbagi, login, dan kuis lewat slak-bridge", 'berbagi-bridge', "Berbagi, login, dan kuis lewat slak-bridge."),
+          bab(40, "40. Terbit sekali klik dan PWA", 'terbit', "Terbit ke GitHub Pages, Netlify, dan FTP, serta aplikasi yang bisa dipasang."),
+          bab(41, "41. Google BigQuery", 'bigquery', "Google BigQuery."),
+          bab(42, "42. Kinerja: sl.worker dan CSV besar", 'kinerja', "sl.worker dan CSV besar."),
+          bab(43, "43. Aksesibilitas", 'aksesibilitas', "Aplikasi Slak yang bisa dipakai semua orang."),
+          bab(44, "44. Versi stabil dan pindah dari versi lama", 'versi-stabil', "Janji API stabil 1.9 dan cara pindah dari versi lama."),
+          bab(45, "45. Situs dokumentasi dengan slak-docs.js", 'slak-docs', "Membuat situs dokumentasi dengan slak-docs.js.")
+        ],
+        'Lampiran': [
           md('Lampiran', 'lampiran.md', 'lampiran', 'Pintasan keyboard, perbedaan dengan Streamlit, padanan pandas dan Excel.'),
+          fn('Katalog API', 'katalog', 'katalog', { deskripsi: 'Semua fungsi Slak dengan contoh yang berjalan langsung.' }),
           md('Riwayat versi', 'riwayat.md', 'riwayat', 'Riwayat Slak 1.0 sampai 1.9.1.'),
           md('Kebijakan versi', 'kebijakan-versi.md', 'kebijakan-versi', 'Kebijakan versi dan API stabil.')
         ],
