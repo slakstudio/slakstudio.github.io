@@ -1,2 +1,2 @@
-# slak.github.io
+# slakstudio.github.io
 Slak: Write and Run
