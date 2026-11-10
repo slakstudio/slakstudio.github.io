@@ -14,6 +14,9 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+  // Situs lain di domain yang sama (misalnya buku Write and Run di /write-and-run/) diurus sendiri, tidak disimpan di sini,
+  // supaya pembaruannya langsung tampil dan berkas besarnya (CSV, PDF) tidak memenuhi penyimpanan browser.
+  if (url.origin === location.origin && url.pathname.startsWith('/write-and-run/')) return;
   if (url.origin === location.origin) {
     e.respondWith(caches.open(VERSI).then(c => c.match(req, { ignoreSearch: true }).then(hit => {
       const net = fetch(req).then(res => { if (res && res.ok) c.put(req, res.clone()); return res; }).catch(() => hit);
