@@ -2,6 +2,19 @@
 
 Slak 1.9 adalah **versi stabil jangka panjang** sebelum Slak 2.0. Aplikasi yang ditulis untuk Slak 1.9 tetap jalan di semua rilis 1.9.x tanpa diubah.
 
+## Landasan yang tidak pernah berubah: Write and Run
+
+Nomor versi boleh naik dan API boleh berkembang, tetapi filosofi **Write and Run** tidak akan pernah diubah, di versi mana pun, termasuk Slak 2.0 dan sesudahnya. Inilah landasan pengembangan Slak untuk seratus tahun ke depan. Setiap versi, berkas tambahan, plugin, dan alat Slak harus lolos keenam aturannya:
+
+1. **Tulis lalu langsung jalan.** Tidak ada build, compile, transpile, atau `npm install`.
+2. **Klik dua kali cukup.** Aplikasi bisa dibuka langsung dari berkas di komputer.
+3. **Unggah cukup.** Untuk online, cukup salin berkas ke hosting biasa seperti cPanel, GitHub Pages, atau Netlify, tanpa perintah terminal.
+4. **Tanpa instalasi.** Pengguna tidak perlu memasang Node.js, Python, Docker, atau server database sendiri.
+5. **Satu bahasa untuk pengguna.** Aplikasi ditulis dengan JavaScript Slak; bahasa lain hanya jika pengguna sendiri memilihnya.
+6. **Bawaan yang masuk akal.** Fitur bekerja tanpa konfigurasi; pengaturan hanya untuk yang ingin lebih.
+
+Usulan yang melanggar salah satu aturan ini tidak diterima, sekalipun bermanfaat. Alat tambahan seperti plugin editor boleh dibuat, tetapi selalu bersifat pilihan: Slak harus tetap bisa ditulis dengan editor teks apa pun dan dibuka dengan klik dua kali.
+
 ## Nomor versi
 
 Slak memakai nomor versi tiga bagian, `mayor.minor.tambalan` (versi semantik):
