@@ -9,6 +9,11 @@
 .sg-aksi{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .sg-aksi a{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none!important;border:1px solid var(--line2);color:var(--fg)!important}
 .sg-aksi a.utama{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)!important}
+.su-buku{display:flex;gap:24px;align-items:flex-start;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.su-sampul{flex:0 0 170px}.su-sampul img{display:block;width:100%;height:auto;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.su-buku>div{display:flex;flex-direction:column;gap:12px;min-width:0}.su-buku p{margin:0;color:var(--sd-text)}
+.su-judul b{display:block;font-size:22px;letter-spacing:-.01em;color:var(--fg)}.su-judul span{font-size:16px;color:var(--sd-lead)}
+@media (max-width:640px){.su-buku{flex-direction:column}.su-sampul{flex-basis:auto;width:150px}}
 .sd-jernih .slak-iframe-wrap iframe{border:1px solid var(--line);border-radius:10px;background:#fff}`;
   // Kartu di Beranda (data-contoh) memilih contoh yang tampil saat Galeri dibuka.
   document.addEventListener('click', e => {

@@ -1,7 +1,7 @@
 /* Service worker situs Slak (Slak 1.8; 1.9.1: playground di folder playground/; situs Jernih: bab dari konten/): situs dan playground tetap terbuka tanpa internet.
  * Berkas inti disimpan saat dipasang; berkas lain (contoh, peta dunia, pustaka dari internet) disimpan saat pertama dibuka.
  * Ganti VERSI setiap kali isi situs diperbarui. */
-const VERSI = 'slak-situs-2026-11-10c';
+const VERSI = 'slak-situs-2026-11-10d';
 const LUAR = 'slak-situs-luar';
 const INTI = ['./', 'index.html', 'playground/', 'playground/index.html', 'slak.js', 'slak-data.js', 'slak-sql.js', 'slak-komponen.js', 'slak-peta.js',
   'slak-docs.js', 'app.js', 'contoh/galeri.js', 'halaman/beranda.js', 'halaman/galeri.js', 'halaman/proyek.js', 'halaman/katalog.js',

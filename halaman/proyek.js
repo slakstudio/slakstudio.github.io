@@ -66,6 +66,15 @@
     sl.caption(R ? `Rilis ${rel.versi} (${rel.tanggal}) dari GitHub Releases. Checksum SHA-256 ada di catatan rilis.` : 'Daftar rilis dari GitHub belum bisa dibaca, jadi yang tampil adalah daftar cadangan di situs ini.');
     sl.warning('Windows bisa menampilkan peringatan SmartScreen karena Slak Studio belum bertanda tangan digital. Klik **Info selengkapnya**, lalu **Tetap jalankan**.');
 
+    sl.header('Buku Write and Run', { anchor: 'write-and-run' });
+    // Edisi web buku ada di slak.studio/write-and-run/. Saat situs ini dibuka dengan klik dua kali, tautannya ke situs resmi.
+    const wr = /^https?:$/.test(location.protocol) ? 'write-and-run/' : 'https://slak.studio/write-and-run/';
+    sl.html(`<div class="su-buku"><a href="${wr}" class="su-sampul"><img src="${wr}sampul/sampul-web.png" alt="Sampul buku Write and Run: Belajar JavaScript untuk Analisis Data dengan Slak" width="827" height="1169" loading="lazy"></a>
+<div><p class="su-judul"><b>Write and Run</b><span>Belajar JavaScript untuk Analisis Data dengan Slak</span></p>
+<p>Buku belajar pemrograman JavaScript dari nol hingga menjadi analis data tingkat menengah. Setiap contoh kode berjalan langsung di browser dengan Slak 1.9.1, tanpa instalasi, tanpa server, dan tanpa build. Isinya 26 bab dalam tiga tahap (JavaScript Pemula, Analis Data Pemula, Analis Data Menengah), tujuh lampiran, dan glosarium, dengan data latihan toko fiktif Toko Nusantara.</p>
+<div class="sg-aksi"><a class="utama" href="${wr}">Baca edisi web</a><a href="${wr}Write-and-Run.pdf" download>Unduh PDF (344 halaman, 12 MB)</a><a href="https://github.com/slakstudio/write-and-run" target="_blank" rel="noopener">GitHub</a></div></div></div>`);
+    sl.caption('Edisi web dan PDF dibuat dari naskah yang sama. Edisi web juga bisa diunduh utuh dari GitHub dan dibaca tanpa internet dengan klik dua kali.');
+
     sl.header('Mulai dalam tiga langkah', { anchor: 'mulai' });
     sl.markdown('1. Buat folder, lalu simpan `slak.js` di dalamnya.\n2. Buat berkas `index.html` berisi kode di bawah.\n3. Klik dua kali `index.html`. Aplikasimu terbuka di browser.');
     sl.code('<!doctype html>\n<script src="slak.js"></' + 'script>\n<script type="text/slak">\nsl.title("Halo, Slak")\nsl.write("Aplikasi pertamaku berjalan tanpa server.")\n</' + 'script>', { language: 'html' });
@@ -90,7 +99,7 @@
 
   H.cari = Object.assign(H.cari || {}, {
     portofolio: 'Portofolio analis data, templat dasbor penjualan, pelanggan dan churn, SDM, templat profil',
-    unduh: 'Unduh slak.js, paket Slak, Slak Studio Windows, kode sumber, Buku Panduan PDF, GitHub Releases, SmartScreen',
+    unduh: 'Unduh slak.js, paket Slak, Slak Studio Windows, kode sumber, Buku Panduan PDF, GitHub Releases, SmartScreen. Buku Write and Run: Belajar JavaScript untuk Analisis Data dengan Slak, edisi web dan PDF',
     lisensi: 'Lisensi MIT, pustaka pihak ketiga, DAFTAR-LISENSI, komersial'
   });
 })();
