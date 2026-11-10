@@ -179,7 +179,9 @@ display:grid;grid-template-columns:272px minmax(0,1fr);grid-template-rows:auto m
       if (b.t === 'md') {
         if (lead && jernih && !/^\s*([-*+>|]|\d+\.)/.test(b.text) && !/\n\s*\n/.test(b.text)) sl.html('<span class="sd-mark sd-lead-m"></span>');
         lead = false;
-        sl.markdown(b.text);
+        const L = lists(b.text);
+        if (L.starts.some(n => n !== 1)) { sl.html(`<span class="sd-mark sd-ol" data-start="${L.starts.join(',')}"></span>`); wireOl(); }
+        sl.markdown(L.text);
         continue;
       }
       lead = false;
@@ -214,6 +216,43 @@ display:grid;grid-template-columns:272px minmax(0,1fr);grid-template-rows:auto m
       if (!extLoad.has(f)) extLoad.set(f, new Promise(ok => { const s = document.createElement('script'); s.src = base + f; s.onload = ok; s.onerror = ok; document.head.append(s); }));
       return extLoad.get(f);
     }));
+  }
+  /* Daftar: Markdown Slak menutup daftar di baris kosong, jadi daftar "longgar" (butir dipisah baris kosong) menjadi
+     beberapa daftar bernomor 1. Baris kosong di antara butir dibuang, dan nomor awal daftar yang terpotong
+     (misalnya oleh blok kode) dipasang lewat atribut start. */
+  const LI = /^\s*([-*+]|\d+[.)])\s+/;
+  function lists(text) {
+    const src = String(text).split('\n'), out = [], starts = [];
+    let inList = false;
+    for (let i = 0; i < src.length; i++) {
+      const line = src[i];
+      if (!line.trim()) {
+        let j = i + 1; while (j < src.length && !src[j].trim()) j++;
+        if (inList && j < src.length && (LI.test(src[j]) || /^\s{2,}\S/.test(src[j]))) { i = j - 1; continue; }
+        inList = false; out.push(line); continue;
+      }
+      if (LI.test(line)) {
+        if (!inList) { const m = /^\s*(\d+)[.)]/.exec(line); if (m) starts.push(+m[1]); }
+        inList = true;
+      } else if (!(inList && /^\s{2,}\S/.test(line))) inList = false;
+      out.push(line);
+    }
+    return { text: out.join('\n'), starts };
+  }
+  let olWired = false;
+  function wireOl() {
+    if (olWired || !hasDoc || typeof MutationObserver === 'undefined') return; olWired = true;
+    let raf = 0;
+    const fix = () => {
+      raf = 0;
+      for (const m of document.querySelectorAll('.sd-ol[data-start]')) {
+        const box = m.parentElement, md = box && box.nextElementSibling; if (!md) continue;
+        const starts = m.getAttribute('data-start').split(',').map(Number), ols = md.querySelectorAll('ol');
+        ols.forEach((ol, k) => { if (starts[k] && starts[k] !== 1 && ol.start !== starts[k]) ol.start = starts[k]; });
+      }
+    };
+    new MutationObserver(() => { if (!raf) raf = requestAnimationFrame(fix); }).observe(document.body, { childList: true, subtree: true });
+    fix();
   }
   let copyWired = false;
   function wireCopy() {
@@ -526,6 +565,9 @@ ${o.cari !== false ? `<label><svg width="16" height="16" viewBox="0 0 24 24" ari
     return nav.run();
   }
   async function halaman(s, rec, flat, o) {
+    // Pindah ke halaman lain (bukan jalan ulang di halaman yang sama): mulai dari atas halaman.
+    const pindah = S.lastUrl !== rec.url;
+    S.lastUrl = rec.url;
     if (hasDoc && o.judul) document.title = rec.polos ? (o.judul_beranda || o.judul) : rec.judul + ' · ' + o.judul;
     meta({ judul: rec.judul + (o.judul ? ' · ' + o.judul : ''), deskripsi: rec.deskripsi || o.deskripsi, gambar: rec.gambar || o.gambar, kanonik: o.kanonik });
     const J = S.jernih, fn = typeof rec.fungsi === 'function';
@@ -560,6 +602,10 @@ ${o.cari !== false ? `<label><svg width="16" height="16" viewBox="0 0 24 24" ari
     }
     if (o.toc !== false) toc(s);
     if (S.goto && hasDoc) { const id = S.goto; S.goto = null; setTimeout(() => scrollToId(id), 60); }
+    else if (pindah && hasDoc) {
+      const top = () => { const m = document.querySelector('.slak-main'); if (m) m.scrollTop = 0; if (global.scrollTo) global.scrollTo(0, 0); };
+      top(); requestAnimationFrame(top); setTimeout(top, 60);
+    }
   }
 
   Slak.docs = { version: '0.2.0', site, markdown, toc, search, meta, _parse: parse, _find: find, _index: buildIndex };
